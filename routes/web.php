@@ -21,3 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/actions', 'HomeController@actions');
+Route::resource('/addresses', 'AddressController');
+Route::resource('/infected-places', 'InfectedPlaceController');
+Route::resource('/recently-visited-locations', 'RecentlyVisitedLocationController');

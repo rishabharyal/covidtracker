@@ -16,8 +16,8 @@ class CreateMunicipalitiesTable extends Migration
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type'); // Can be city, village, etc.
-            $table->text('location')->nullable(); // Can be city, village, etc.
+            $table->string('type');
+            $table->text('coordinates')->nullable();
             $table->text('metadata')->nullable();
             $table->timestamps();
         });

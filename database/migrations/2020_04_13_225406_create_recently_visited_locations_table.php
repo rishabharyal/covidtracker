@@ -16,23 +16,14 @@ class CreateRecentlyVisitedLocationsTable extends Migration
         Schema::create('recently_visited_locations', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('referrer_id')->nullable();
-            $table->string('name');
-            $table->string('address_name');
+            $table->unsignedBigInteger('used_id')->nullable();
+            $table->unsignedBigInteger('address_id')->nullable();
+
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('province_id')->nullable();
-            $table->unsignedBigInteger('zone_id')->nullable();
-            $table->unsignedBigInteger('district_id')->nullable();
-            $table->unsignedBigInteger('municipality_id')->nullable();
 
-            $table->foreign('referrer_id')->references('id')->on('users');
-            $table->foreign('province_id')->references('id')->on('provinces');
-            $table->foreign('zone_id')->references('id')->on('zones');
-            $table->foreign('district_id')->references('id')->on('districts');
-            $table->foreign('municipality_id')->references('id')->on('municipalities');
-
+            $table->foreign('used_id')->references('id')->on('users');
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
         });
     }

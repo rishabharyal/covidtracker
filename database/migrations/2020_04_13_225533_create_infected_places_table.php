@@ -15,23 +15,10 @@ class CreateInfectedPlacesTable extends Migration
     {
         Schema::create('infected_places', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name');
-            $table->string('address');
-            $table->string('location')->nullable();
-            $table->unsignedBigInteger('province_id')->nullable();
-            $table->unsignedBigInteger('zone_id')->nullable();
-            $table->unsignedBigInteger('district_id')->nullable();
-            $table->unsignedBigInteger('municipality_id')->nullable();
-            $table->unsignedBigInteger('places_type_id');
+            $table->unsignedBigInteger('address_id');
             $table->text('metadata')->nullable();
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
-
-            $table->foreign('province_id')->references('id')->on('provinces');
-            $table->foreign('zone_id')->references('id')->on('zones');
-            $table->foreign('district_id')->references('id')->on('districts');
-            $table->foreign('municipality_id')->references('id')->on('municipalities');
-            $table->foreign('places_type_id')->references('id')->on('place_types');
         });
     }
 
