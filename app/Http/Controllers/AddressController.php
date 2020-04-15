@@ -58,7 +58,7 @@ class AddressController extends Controller
 
         $p = new Address();
         $p->name = $request->get('name');
-        $p->coordinates = $request->get('location');
+        $p->coordinates = ($request->get('lat') && $request->get('lng')) ? $request->get('lat') . ',' . $request->get('lng') : ' , ';
         $p->province_id = $request->get('province_id') ?? null;
         $p->zone_id = $request->get('zone_id') ?? null;
         $p->district_id = $request->get('district_id') ?? null;
@@ -120,7 +120,7 @@ class AddressController extends Controller
         ]);
 
         $address->name = $request->get('name');
-        $address->coordinates = $request->get('location');
+        $address->coordinates = $request->get('lat') ?? '' . ',' . $request->get('lng') ?? '';
         $address->province_id = $request->get('province_id') ?? null;
         $address->zone_id = $request->get('zone_id') ?? null;
         $address->district_id = $request->get('district_id') ?? null;

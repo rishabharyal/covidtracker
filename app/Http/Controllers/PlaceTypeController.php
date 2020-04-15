@@ -14,7 +14,9 @@ class PlaceTypeController extends Controller
      */
     public function index()
     {
-        //
+        $placeTypes = PlaceType::all();
+
+        return view('pages.place-types.index', compact('placeTypes'));
     }
 
     /**
@@ -35,7 +37,17 @@ class PlaceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $placeType = new PlaceType();
+        $placeType->name = $request->get('name');
+        $placeType->metadata = json_encode([]);
+
+        $placeType->save();
+
+        return redirect()->back()->with('success', 'The Place Type has been Added Successfully!');
     }
 
     /**
@@ -57,7 +69,7 @@ class PlaceTypeController extends Controller
      */
     public function edit(PlaceType $placeType)
     {
-        //
+        return view('pages.place-types.edit', compact('placeType'));
     }
 
     /**
@@ -69,7 +81,16 @@ class PlaceTypeController extends Controller
      */
     public function update(Request $request, PlaceType $placeType)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $placeType->name = $request->get('name');
+        $placeType->metadata = json_encode([]);
+
+        $placeType->save();
+
+        return redirect()->action('PlaceTypeController@index')->with('success', 'The Place Type has been Updated Successfully!');
     }
 
     /**
@@ -80,6 +101,11 @@ class PlaceTypeController extends Controller
      */
     public function destroy(PlaceType $placeType)
     {
-        //
+        if (!$placeType) {
+            return redirect()->back()->with('error', 'The requested Place Type does not exist!');
+        }
+
+        $placeType->delete();
+        return redirect()->back()->with('error', 'The requested Place Type has been Deleted Successfully');
     }
 }

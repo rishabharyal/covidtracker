@@ -117,6 +117,9 @@
                 dateFormat: "Y-m-d H:i",
             });
             $('.date-today').val((new Date()).toISOString().split("T")[0]);
+            $(".datetimepicker").each(function(){
+                console.log($(this).attr('value'));
+            })
         })
     </script>
     @yield('scripts')

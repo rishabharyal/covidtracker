@@ -33,13 +33,25 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" class="form-control text-capitalize" id="location"
-                                value="{{$address->coordinates}}" required>
-                            @if ($errors->has('location'))
+                        <div class="form-group{{ $errors->has('lat') ? ' has-danger' : '' }}">
+                            <label for="lat">Latitude</label>
+                        <input type="text" name="lat" class="form-control text-capitalize" id="lat" value="{{explode(',',$address->coordinates)[0]}}"
+                                >
+                            @if ($errors->has('lat'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('location') }}</strong>
+                                <strong>{{ $errors->first('lat') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="form-group{{ $errors->has('lng') ? ' has-danger' : '' }}">
+                            <label for="lng">Longitude</label>
+                            <input type="text" name="lng" class="form-control text-capitalize" id="lng" value="{{explode(',',$address->coordinates)[1]}}"
+                                >
+                            @if ($errors->has('lng'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('lng') }}</strong>
                             </span>
                             @endif
                         </div>

@@ -36,10 +36,10 @@
                 <a href="{{ action('RecentlyVisitedLocationController@index') }}">Add Recently Visited Locations</a>
             </li>
             <li class="list-group-item">
-                <a href="">Add Patient</a>
+                <a href="{{ action('InfectionDetailsController@index') }}">Add Patient Info</a>
             </li>
             <li class="list-group-item">
-                <a href="">Add Place Type</a>
+                <a href="{{ action('PlaceTypeController@index') }}">Add Place Type</a>
             </li>
         </ul>
     </div>

@@ -39,13 +39,25 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
-                        <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" class="form-control text-capitalize" id="location"
-                                required>
-                            @if ($errors->has('location'))
+                        <div class="form-group{{ $errors->has('lat') ? ' has-danger' : '' }}">
+                            <label for="lat">Latitude</label>
+                            <input type="text" name="lat" class="form-control text-capitalize" id="lat"
+                                >
+                            @if ($errors->has('lat'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('location') }}</strong>
+                                <strong>{{ $errors->first('lat') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="form-group{{ $errors->has('lng') ? ' has-danger' : '' }}">
+                            <label for="lng">Longitude</label>
+                            <input type="text" name="lng" class="form-control text-capitalize" id="lng"
+                                >
+                            @if ($errors->has('lng'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('lng') }}</strong>
                             </span>
                             @endif
                         </div>
@@ -56,7 +68,7 @@
                             <select name="province_id" id="province_id" class="form-control">
                                 <option>Select A Province</option>
                                 @foreach($provinces as $province)
-                                <option 
+                            <option value="{{$province->id}}"
                                    >{{ $province->name }}</option>
                                 @endforeach
                             </select>
@@ -164,7 +176,7 @@
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{$address->name}}</td>
-                    <td>{{$address->coordinates}}</td>
+                    <td>{{'lat: '.explode(',',$address->coordinates)[0] .' lng: '.explode(',',$address->coordinates)[1]}}</td>
                     <td>{{$address->province ? $address->province->name : 'N/A'}}</td>
                     <td>{{$address->zone ? $address->zone->name : 'N/A'}}</td>
                     <td>{{$address->district ? $address->district->name : 'N/A'}}</td>
